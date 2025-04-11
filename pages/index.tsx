@@ -1,22 +1,29 @@
 import React, { useRef, useState, useEffect } from 'react';
 
-const canvasWidth = window.innerWidth;
-const canvasHeight = window.innerHeight;
 const birdSize = 30;
-const pipeWidth = 50;
-const pipeGap = 120;
 const pipeSpeed = 2;
 const gravity = 0.25;
 const jumpStrength = -4.6;
 
-const Home: React.FC = () => {
+
+const Home: React.FC = (): JSX.Element => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [score, setScore] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
   const [gameOver, setGameOver] = useState(false);
-  const [birdY, setBirdY] = useState(canvasHeight / 2);
+  const [canvasWidth, setCanvasWidth] = useState(0);
+  const [canvasHeight, setCanvasHeight] = useState(0);
+  const [birdY, setBirdY] = useState(0);
+  const [pipeWidth, setPipeWidth] = useState(50);
+  const [pipeGap, setPipeGap] = useState(120);
   const [birdVelocity, setBirdVelocity] = useState(0);
   const [pipes, setPipes] = useState<{ x: number; gapY: number }[]>([]);
+
+  useEffect(() => {
+    setCanvasWidth(window.innerWidth);
+    setCanvasHeight(window.innerHeight);
+    setBirdY(window.innerHeight / 2)
+  }, []);
 
   // Generate initial pipes
   useEffect(() => {
@@ -167,8 +174,8 @@ const Home: React.FC = () => {
     >
         <canvas
           ref={canvasRef}
-          width={canvasWidth}
-          height={canvasHeight}
+          width={canvasWidth || 0}
+          height={canvasHeight || 0}
           onClick={handleInput}
         />
       </div>

@@ -12,7 +12,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "types": ["node"],  // 确保这一行存在
+    "types": ["react", "react-dom", "node"],
     "incremental": true,
     "paths": {
       "@/*": ["./*"]
