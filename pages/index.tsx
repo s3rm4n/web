@@ -6,7 +6,7 @@ const gravity = 0.25;
 const jumpStrength = -4.6;
 
 
-const Home: React.FC = (): JSX.Element => {
+const Home: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [score, setScore] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
